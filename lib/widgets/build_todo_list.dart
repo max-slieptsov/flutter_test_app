@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test_app_1/models/todo.model.dart';
 
 import '../components/todo_input.dart';
 import '../cubit/todo_cubit.dart';
 
-Widget buildTodoList(List<Map<String, dynamic>> todoList) {
+Widget buildTodoList(List<TodoModel> todoList) {
   return ListView.builder(
       itemCount: todoList.length,
       itemBuilder: (context, index) {
@@ -21,10 +22,10 @@ Widget buildTodoList(List<Map<String, dynamic>> todoList) {
                       }
                       return Colors.white;
                     }),
-                    value: todoList[index]['isDone'],
+                    value: todoList[index].isDone,
                     onChanged: (bool? value) {
-                      final completedValue = !todoList[index]['isDone'];
-                      final id = todoList[index]['id'];
+                      final completedValue = !todoList[index].isDone;
+                      final id = todoList[index].id;
 
                       context
                           .read<TodoCubit>()
@@ -35,7 +36,7 @@ Widget buildTodoList(List<Map<String, dynamic>> todoList) {
             ),
             IconButton(
                 onPressed: () {
-                  context.read<TodoCubit>().deleteTodo(todoList[index]['id']);
+                  context.read<TodoCubit>().deleteTodo(todoList[index].id);
                 },
                 icon: const Icon(Icons.delete))
           ],

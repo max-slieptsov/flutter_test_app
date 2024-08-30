@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/todo_cubit.dart';
+import '../models/todo.model.dart';
 
 class TodoItem extends StatefulWidget {
-  final Map<String, dynamic> todoListItem;
+  final TodoModel todoListItem;
 
   const TodoItem({super.key, required this.todoListItem});
 
@@ -15,7 +16,7 @@ class TodoItem extends StatefulWidget {
 class _TodoItemState extends State<TodoItem> {
   bool isEditing = false;
   late final myController =
-      TextEditingController(text: widget.todoListItem['description']);
+      TextEditingController(text: widget.todoListItem.description);
 
   @override
   void dispose() {
@@ -37,9 +38,7 @@ class _TodoItemState extends State<TodoItem> {
             controller: myController,
             autofocus: true,
             onChanged: (value) {
-              context
-                  .read<TodoCubit>()
-                  .editTodo(widget.todoListItem['id'], value);
+              context.read<TodoCubit>().editTodo(widget.todoListItem.id, value);
             },
             onTapOutside: (event) {
               toggleEdit(false);
@@ -58,12 +57,12 @@ class _TodoItemState extends State<TodoItem> {
               Expanded(
                   child: ListTile(
                       title: Text(
-                widget.todoListItem['description'],
+                widget.todoListItem.description,
                 style: TextStyle(
-                    decoration: widget.todoListItem['isDone']
+                    decoration: widget.todoListItem.isDone
                         ? TextDecoration.lineThrough
                         : TextDecoration.none,
-                    color: widget.todoListItem['isDone']
+                    color: widget.todoListItem.isDone
                         ? Colors.grey
                         : Colors.black),
               ))),

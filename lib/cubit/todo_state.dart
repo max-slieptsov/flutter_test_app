@@ -1,24 +1,24 @@
 part of 'todo_cubit.dart';
 
 sealed class TodoState {
-  List<Map<String, dynamic>> get todoList => [];
+  List<TodoModel> get todoList => [];
 }
 
-final List<Map<String, dynamic>> todoInitState = [
-  {
-    "description": 'Learn Flutter',
-    "isDone": false,
-    "id": '1',
-  },
-  {
-    "description": 'Learn Dart',
-    "isDone": false,
-    "id": '2',
-  }
+final List<TodoModel> todoInitState = [
+  TodoModel(
+    description: 'Learn Flutter',
+    isDone: false,
+    id: '1',
+  ),
+  TodoModel(
+    description: 'Build Apps',
+    isDone: false,
+    id: '2',
+  ),
 ];
 
 final class TodoListState extends TodoState {
   @override
-  final List<Map<String, dynamic>> todoList;
+  final List<TodoModel> todoList;
   TodoListState(this.todoList);
 }
