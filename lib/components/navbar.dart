@@ -26,6 +26,12 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
             context.go('/todo');
           },
         ),
+        IconButton(
+          icon: const Icon(Icons.cloud),
+          onPressed: () {
+            context.go('/weather');
+          },
+        ),
       ],
     );
   }
